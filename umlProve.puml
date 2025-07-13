@@ -1,0 +1,36 @@
+@startuml
+actor Usuario
+participant "Frontend\n(React/Angular)" as FE
+participant "API Backend\n(Spring Boot)" as BE
+participant "DB" as DB
+
+== Flujo Principal ==
+Usuario -> FE : Completa formulario de registro
+FE -> BE : POST /api/users (datos usuario)
+BE -> DB : SELECT * FROM usuarios WHERE email = ?
+alt Usuario ya existe
+    DB --> BE : Usuario encontrado
+    BE --> FE : 409 Conflict - Usuario ya registrado
+    FE --> Usuario : Mensaje de error
+else Usuario no existe
+    DB --> BE : No encontrado
+    BE -> DB : INSERT INTO usuarios
+    alt Falla DB al insertar
+        DB --> BE : Error (excepción)
+        BE --> FE : 500 Internal Server Error
+        FE --> Usuario : Registro fallido, intente más tarde
+    else Insert OK
+        DB --> BE : OK
+        BE --> FE : 201 Created
+        FE --> Usuario : Registro exitoso
+    end
+end
+
+== Validación de datos (lado servidor) ==
+note right of BE
+  Si los datos no cumplen
+  (ej. email mal formado, password corto),
+  se responde 400 Bad Request
+end note
+
+@enduml
