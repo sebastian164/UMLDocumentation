@@ -1,0 +1,27 @@
+@startuml
+
+actor Usuario
+actor Administrador
+actor "Miembro de Junta" as Junta
+
+rectangle "Sistema de Radicación de Quejas" {
+    usecase "Iniciar sesión" as UC0
+    usecase "Radicar queja" as UC1
+    usecase "Consultar estado de queja" as UC2
+    usecase "Crear usuarios" as UC3
+    usecase "Ver quejas asignadas" as UC4
+    usecase "Responder quejas" as UC5
+}
+
+Usuario --> UC0
+Usuario --> UC1
+Usuario --> UC2
+
+Administrador --> UC0
+Administrador --> UC3
+
+Junta --> UC0
+Junta --> UC4
+Junta --> UC5
+
+@enduml
