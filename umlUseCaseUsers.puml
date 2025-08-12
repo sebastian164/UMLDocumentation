@@ -1,0 +1,30 @@
+@startuml
+
+actor Usuario
+actor Administrador
+
+package "Sistema de Gestión de Casos" {
+
+  usecase "Ingresar al sistema" as UC1
+
+  usecase "Ver casos activos" as UC2
+  usecase "Ver casos en seguimiento" as UC3
+  usecase "Ver casos culminados" as UC4
+
+  usecase "Crear usuarios" as UC5
+  usecase "Modificar usuarios" as UC6
+  usecase "Inactivar usuarios" as UC7
+  usecase "Eliminar usuarios" as UC8
+}
+
+Usuario --> UC1
+Usuario --> UC2
+Usuario --> UC3
+Usuario --> UC4
+
+Administrador --> UC5
+Administrador --> UC6
+Administrador --> UC7
+Administrador --> UC8
+
+@enduml

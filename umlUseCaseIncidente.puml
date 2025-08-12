@@ -1,0 +1,28 @@
+@startuml
+start
+
+:Registrar Incidencia;
+:Ingresar Apartamento;
+:Ingresar Torre;
+:Describir Suceso;
+:Adjuntar Evidencias;
+:Seleccionar modalidad de aviso;
+if (¿Anónimo?) then (Sí)
+  :Ocultar datos del usuario;
+else (No)
+  :Solicitar Torre, Apartamento, Usuario;
+endif
+
+:Enviar información;
+
+fork
+  :Enviar a Administrador;
+fork again
+  :Enviar a Comité;
+end fork
+
+:Registrar como Incidencia Activa;
+:Radicación (Administrador o Comité);
+
+stop
+@enduml

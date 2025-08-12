@@ -1,0 +1,31 @@
+@startuml
+start
+
+:Recepción de inconformidad;
+:Aviso de reunión;
+
+:Realizar reunión de comité;
+:Elaborar acta de la sesión;
+
+:Firmar acta electrónicamente;
+:Aprobar acta;
+
+if (¿Modificar acta?) then (Sí)
+  :Permitir modificación del acta;
+  -> Realizar reunión de comité;
+else (No)
+endif
+
+:Actualizar estado de incidencia;
+
+if (¿Estado final?) then (Cerrado)
+  :Marcar como cerrado;
+else
+  :Marcar como en proceso;
+endif
+
+:Compartir con administración y comité;
+:Esperar hasta 5 días hábiles para respuesta;
+
+stop
+@enduml
