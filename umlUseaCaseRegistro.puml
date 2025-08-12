@@ -1,0 +1,12 @@
+@startuml
+class Registro {
+    - nombre: String
+    - documento: String
+    - tipoDocumento: String
+    - numero: String
+    - torre: String
+    - apartamento: String
+    - email: String
+    - tipoTenencia: String
+}
+@enduml
